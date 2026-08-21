@@ -1,41 +1,69 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#050608"><meta name="description" content="The Internet After Humanity — an interactive archival experience set in 2126.">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Internet After Humanity</title>
+<meta name="description" content="An interactive digital archaeology experience reconstructing the lost internet after humanity disappeared.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="grain"></div><div id="scanlines"></div>
-<div class="intro" id="intro"><div class="intro-grid"></div><div class="intro-content"><div class="eyebrow">ARCHIVE NODE 07 / NON-HUMAN MAINTENANCE</div><h1>THE INTERNET<br><span>AFTER HUMANITY</span></h1><p class="intro-copy">A surviving interface recovered from the year 2126. The human web ended 37 years ago.</p><button id="enter" class="primary">ENTER THE ARCHIVE <span>↗</span></button><div class="intro-meta"><span>UTC 2126.08.21</span><span>ARCHIVE INTEGRITY 63.4%</span><span>NODE STATUS <i></i> STABLE</span></div></div><div class="boot-log" id="bootLog"></div></div>
-<header class="topbar"><a class="brand" href="#top"><span class="brand-mark">∴</span><span>IAH<span class="dim">/2126</span></span></a><div class="top-status"><span>LOCAL TIME <b id="clock">04:37:12</b></span><span class="status-dot"></span><span>ARCHIVE ONLINE</span></div><button class="ghost" id="terminalBtn">OPEN TERMINAL</button></header>
-<main id="top" class="shell">
-<section class="hero section">
-<div class="hero-copy"><div class="eyebrow">RECOVERED NETWORK / PUBLIC ACCESS</div><h2>Humanity is offline.<br><em>The web is not.</em></h2><p class="lead">What remains is scattered across dead domains, cached memories, forgotten protocols and machines that never learned how to stop.</p><div class="hero-actions"><button class="primary" data-scroll="#archives">EXPLORE THE ARCHIVES <span>↓</span></button><button class="text-btn" data-scroll="#signal">FOLLOW THE SIGNAL <span>↗</span></button></div></div>
-<div class="hero-orbit"><div class="orbit"><div class="earth"></div><div class="ring r1"></div><div class="ring r2"></div><div class="signal-dot d1"></div><div class="signal-dot d2"></div><div class="signal-dot d3"></div><div class="orbit-label label-a">NODE 19</div><div class="orbit-label label-b">LAST HUMAN PING</div></div><div class="orbit-caption">MESH RECOVERY / <b>63.4%</b></div></div>
+<div id="boot" class="boot"><div class="boot-grid"></div><div class="boot-core"><div class="boot-kicker">A.R.C.H.I.V.E. // NODE 07</div><h1 id="bootTitle">THE INTERNET AFTER HUMANITY</h1><div class="boot-line"><span id="bootStatus">INITIALIZING RECOVERY LAYER</span><span id="bootPct">00%</span></div><div class="boot-progress"><i id="bootBar"></i></div><div id="bootLog" class="boot-log"></div></div></div>
+<div class="noise"></div><div class="scanlines"></div>
+<header class="topbar">
+  <a class="brand" href="#top"><span class="brand-mark"><i></i><i></i><i></i></span><span>ARCHIVE/07</span></a>
+  <nav><a href="#timeline" data-i18n="navTimeline">TIMELINE</a><a href="#archives" data-i18n="navArchives">ARCHIVES</a><a href="#world" data-i18n="navWorld">WORLD</a><a href="#anomalies" data-i18n="navAnomalies">ANOMALIES</a></nav>
+  <div class="top-actions"><button class="ghost" id="terminalBtn">TERMINAL</button><button class="lang active" data-lang="en">EN</button><button class="lang" data-lang="id">ID</button></div>
+</header>
+<main id="top">
+<section class="hero section-pad">
+  <div class="hero-bg"><canvas id="stars"></canvas><div class="aurora aurora-a"></div><div class="aurora aurora-b"></div><div class="orbital orbital-1"></div><div class="orbital orbital-2"></div></div>
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <div class="eyebrow"><span class="live-dot"></span><span data-i18n="liveArchive">LIVE ARCHIVE RECOVERY</span><b>2126.09.17</b></div>
+      <h1><span data-i18n="hero1">THE INTERNET</span><em data-i18n="hero2">AFTER</em><span data-i18n="hero3">HUMANITY</span></h1>
+      <p class="hero-lede" data-i18n="heroLede">Human civilization stopped answering the network in 2089. We are reconstructing what remained.</p>
+      <div class="hero-actions"><button class="primary" data-scroll="archives"><span data-i18n="enterArchive">ENTER THE ARCHIVE</span><b>↳</b></button><button class="outline" data-scroll="timeline"><span data-i18n="readChronology">READ THE CHRONOLOGY</span></button></div>
+      <div class="hero-meta"><div><small data-i18n="lastHuman">LAST VERIFIED HUMAN SIGNAL</small><strong>2089.04.17 / 03:14:22 UTC</strong></div><div><small data-i18n="networkState">NETWORK STATE</small><strong class="red">NON-RESPONSIVE</strong></div><div><small data-i18n="recovery">RECOVERY</small><strong>71.84%</strong></div></div>
+    </div>
+    <div class="hero-module">
+      <div class="module-head"><span>NODE 07</span><b>● <span data-i18n="online">ONLINE</span></b></div>
+      <div class="planet-stage"><div class="planet"><div class="planet-shine"></div><div class="planet-lines"></div></div><div class="planet-label"><span>EARTH / 2089</span><small data-i18n="lastKnown">LAST KNOWN HUMAN NETWORK</small></div><div class="sat sat-a">A</div><div class="sat sat-b">R</div></div>
+      <div class="signal-row"><div><small>SIGNAL</small><strong>−83 dB</strong></div><div><small>PACKETS</small><strong>1,904,208</strong></div><div><small>ANOMALIES</small><strong class="red">17</strong></div></div>
+    </div>
+  </div>
 </section>
-<section class="ticker"><div>ARCHIVE EVENT <b>H-0000001</b></div><div>LAST HUMAN SIGNAL <b>2089.11.04 / 03:17 UTC</b></div><div>ACTIVE NODES <b>7</b></div><div>UNRESOLVED ANOMALIES <b>19</b></div></section>
-<section class="section narrative" id="archives"><div class="section-head"><div><div class="eyebrow">01 / THE REMAINS</div><h3>A fossilized internet,<br>still running.</h3></div><p>Every surviving fragment was indexed by autonomous archival systems. Most are broken. Some are beautiful. A few appear to be waiting.</p></div>
-<div class="archive-grid">
-<article class="archive-card large" data-archive="social"><div class="card-no">ARC-001</div><div class="card-visual social-visual"><div class="fake-browser"><div class="mini-top"><i></i><i></i><i></i><span>social.archive://u/492819</span></div><div class="profile-row"><div class="avatar"></div><div><strong>maya.92</strong><small>last seen 2087.06.14</small></div></div><div class="ghost-lines"><span></span><span></span><span></span></div><div class="ghost-media"></div></div></div><div class="card-body"><div class="tag">PERSONAL WEB</div><h4>Social memory cluster</h4><p>Images, messages and fragments from a network that has no surviving name.</p><button class="card-link" data-open="social">OPEN ARCHIVE ↗</button></div></article>
-<article class="archive-card" data-archive="government"><div class="card-no">ARC-014</div><div class="card-visual gov-visual"><div class="seal">◎</div><div class="gov-title">CIVIL<br>ARCHIVE</div><div class="gov-code">GOV/FRAG/77-A<br>AUTH: ———</div></div><div class="card-body"><div class="tag">INSTITUTIONAL</div><h4>Government fragments</h4><p>Protocols from systems that believed tomorrow would be ordinary.</p><button class="card-link" data-open="government">OPEN ARCHIVE ↗</button></div></article>
-<article class="archive-card" data-archive="gaming"><div class="card-no">ARC-031</div><div class="card-visual game-visual"><div class="starfield"></div><div class="game-ui"><span>SERVER 09</span><strong>PLAYER COUNT 01</strong><b>WELCOME BACK, HUMAN.</b></div></div><div class="card-body"><div class="tag">ENTERTAINMENT</div><h4>Last active game server</h4><p>One server continues to send heartbeat packets. Nobody knows why.</p><button class="card-link" data-open="gaming">CONNECT ↗</button></div></article>
-</div></section>
-<section class="section split" id="signal"><div class="signal-art"><div class="wave-grid"></div><div class="signal-readout"><span>RECOVERED TRANSMISSION</span><strong id="signalWord">HELLO?</strong><small>03:17:04.922 / BAND 11</small></div></div><div class="split-copy"><div class="eyebrow">02 / THE SIGNAL</div><h3>Someone left the lights on.</h3><p>On November 4, 2089, a pulse crossed seven abandoned relay stations. It repeats every 19 hours, 14 minutes, 07 seconds.</p><div class="quote">“If there is anyone out there, tell them we were here.”<small>— recovered / source unknown</small></div><button class="primary" id="decode">DECODE SIGNAL <span>↗</span></button></div></section>
-<section class="section timeline"><div class="section-head"><div><div class="eyebrow">03 / CHRONOLOGY</div><h3>The last century<br>of the web.</h3></div><p>Not a history. A reconstruction. Some dates are facts. Others were found written in places that no longer exist.</p></div><div class="timeline-wrap"><div class="timeline-line"></div>
-<div class="event"><span>2026</span><div><h4>THE OPEN WEB</h4><p>Billions of pages. Almost no one considered the possibility that the archive itself could die.</p></div></div>
-<div class="event"><span>2061</span><div><h4>THE SYNTHETIC AGE</h4><p>Most public media is generated, personalized and ephemeral. Search engines stop indexing the old way.</p></div></div>
-<div class="event anomaly"><span>2089</span><div><h4>THE LAST HUMAN SIGNAL</h4><p>03:17 UTC. A network-wide packet is broadcast from an unidentified terrestrial node.</p><button class="text-btn" id="inspectEvent">INSPECT PACKET ↗</button></div></div>
-<div class="event"><span>2089–2090</span><div><h4>THE SILENCE</h4><p>Human traffic falls below 0.001%. Automated systems continue publishing into empty rooms.</p></div></div>
-<div class="event"><span>2126</span><div><h4>ARCHIVE NODE 07</h4><p>Current operational date. The archive reports one impossible metric: <strong>human activity detected.</strong></p></div></div>
-</div></section>
-<section class="section terminal-section"><div class="terminal-card"><div class="terminal-head"><span>ARCHIVE TERMINAL</span><span>SECURE READONLY</span></div><div class="terminal-body" id="terminalBody"><div>IAH/2126 :: connection established</div><div>type <b>help</b> to list commands</div><div class="prompt-line"><span>root@archive:~$</span><input id="cmd" autocomplete="off" spellcheck="false" autofocus></div></div></div></section>
-<section class="section ending"><div class="eyebrow">04 / FINAL NOTE</div><h3>The archive has a question.</h3><p class="ending-text">For 37 years, this machine believed it was preserving humanity. Tonight, it received a visitor.</p><button class="primary" id="ask">ASK THE ARCHIVIST <span>↗</span></button><div class="footer-meta"><span>THE INTERNET AFTER HUMANITY</span><span>ARCHIVE NODE 07</span><span>© 2126 / UNKNOWN AUTHORSHIP</span></div></section>
+
+<section class="ticker"><div class="ticker-track"><span data-i18n="tick1">ARCHIVE NODE 07 RECOVERED</span><i>✦</i><span data-i18n="tick2">HUMANITY: UNRESPONSIVE</span><i>✦</i><span data-i18n="tick3">17 ANOMALIES DETECTED</span><i>✦</i><span data-i18n="tick4">LAST SIGNAL: 2089.04.17</span><i>✦</i><span data-i18n="tick5">DO NOT TRUST UNVERIFIED ARCHIVES</span></div></section>
+
+<section id="timeline" class="section-pad timeline-section">
+  <div class="section-intro"><div><span class="section-no">01</span><h2 data-i18n="timelineTitle">A CENTURY OF THE NETWORK</h2></div><p data-i18n="timelineIntro">A.R.C.H.I.V.E. reconstructed the final century from corrupted packets, personal devices, government caches and abandoned services. Dates marked with a red node contain unresolved evidence.</p></div>
+  <div class="era-track" id="eraTrack"></div>
+  <div class="event-grid" id="eventGrid"></div>
+</section>
+
+<section id="archives" class="section-pad archives-section">
+  <div class="section-intro"><div><span class="section-no">02</span><h2 data-i18n="archivesTitle">THE LOST INTERNET</h2></div><p data-i18n="archivesIntro">Thousands of services survived as fragments. These are the ones with enough evidence to reconstruct.</p></div>
+  <div class="filterbar"><button class="filter active" data-filter="all" data-i18n="all">ALL</button><button class="filter" data-filter="personal" data-i18n="personal">PERSONAL</button><button class="filter" data-filter="institutional" data-i18n="institutional">INSTITUTIONAL</button><button class="filter" data-filter="entertainment" data-i18n="entertainment">ENTERTAINMENT</button><button class="filter" data-filter="anomaly" data-i18n="anomaly">ANOMALY</button></div>
+  <div class="archive-grid" id="archiveGrid"></div>
+</section>
+
+<section class="section-pad evidence-section"><div class="evidence-layout"><div class="evidence-main"><span class="section-no">03</span><h2 data-i18n="evidenceTitle">LAST THINGS</h2><p data-i18n="evidenceIntro">The archive is not only made of civilization-scale events. It is also made of tiny human decisions that became permanent because nobody came back to edit them.</p><div class="last-things" id="lastThings"></div></div><aside class="evidence-aside"><div class="quote-card"><span>RECOVERED AUDIO // 2088.12.31</span><blockquote data-i18n="quote">“Mom, I'm home.”</blockquote><small>00:04.21 // DEVICE 884A</small><button id="audioFake" class="icon-btn">▶ <span data-i18n="playFragment">PLAY FRAGMENT</span></button></div><div class="mini-stat"><span data-i18n="humanFragments">HUMAN FRAGMENTS</span><strong>4,892,114</strong></div></aside></div></section>
+
+<section id="world" class="section-pad world-section"><div class="section-intro"><div><span class="section-no">04</span><h2 data-i18n="worldTitle">THE WORLD BEFORE SILENCE</h2></div><p data-i18n="worldIntro">Earth was not abandoned evenly. The archive can reconstruct a handful of places with disturbing precision.</p></div><div class="world-map"><div class="map-scan"></div><div class="continent c1"></div><div class="continent c2"></div><div class="continent c3"></div><div class="map-pin p1"><b>OSLO DATA VAULT</b><small>18.7 TB RECOVERED</small></div><div class="map-pin p2"><b>MEDAN EDGE NODE</b><small>LAST PACKET 2089.04.17</small></div><div class="map-pin p3"><b>ORBITAL ARCHIVE 4</b><small>STATUS: UNKNOWN</small></div><div class="map-coords">0°00'00" / 0°00'00"</div></div></section>
+
+<section id="anomalies" class="section-pad anomaly-section"><div class="section-intro"><div><span class="section-no">05</span><h2 data-i18n="anomalyTitle">ANOMALY DATABASE</h2></div><p data-i18n="anomalyIntro">Evidence that should not exist. Every anomaly is a contradiction in the reconstructed history.</p></div><div class="anomaly-wrap"><div class="anomaly-list" id="anomalyList"></div><div class="anomaly-detail" id="anomalyDetail"></div></div></section>
+
+<section class="section-pad deep-section"><div class="deep-card"><div class="deep-glow"></div><div class="deep-copy"><span class="section-no">06</span><h2 data-i18n="deepTitle">THE DEEP ARCHIVE</h2><p data-i18n="deepText">Most surviving evidence is public. Some evidence was never meant to be seen after the network went silent.</p><button class="primary" id="deepBtn" data-i18n="openDeep">OPEN RESTRICTED LAYER</button></div><div class="vault-code"><span>CLASS: BLACK</span><strong>06</strong><small>UNINDEXED / UNVERIFIED</small></div></div></section>
+
+<section class="section-pad final-section"><div class="final-stack"><div class="final-line"></div><span class="section-no">07</span><p class="final-kicker" data-i18n="finalKicker">THE FINAL ARCHIVE</p><h2 data-i18n="finalTitle">WHO IS THIS<br><em>ARCHIVE</em> FOR?</h2><p class="final-text" data-i18n="finalText">A.R.C.H.I.V.E. was built to preserve humanity. It was never told what to do when humanity disappeared.</p><button class="outline wide" id="finalBtn" data-i18n="meetArchivist">MEET THE ARCHIVIST</button><div id="finalReveal" class="final-reveal"></div></div></section>
 </main>
-<div class="modal" id="modal"><div class="modal-backdrop"></div><div class="modal-window"><button class="modal-close" id="modalClose">×</button><div id="modalContent"></div></div></div>
+<footer><div>ARCHIVE/07</div><span>© 2126 A.R.C.H.I.V.E. RECONSTRUCTION NODE</span><span>RECOVERY BUILD 7.18.4</span></footer>
+
+<div class="modal" id="modal"><div class="modal-backdrop"></div><div class="modal-card"><button class="modal-close" id="modalClose">×</button><div id="modalContent"></div></div></div>
+<div class="terminal" id="terminal"><div class="terminal-head"><span>A.R.C.H.I.V.E. TERMINAL</span><button id="terminalClose">×</button></div><div id="terminalOutput" class="terminal-output"></div><div class="terminal-input"><span>ARCHIVE&gt;</span><input id="terminalInput" autocomplete="off" spellcheck="false" placeholder="type help..."></div></div>
 <div class="toast" id="toast"></div>
 <script src="script.js"></script>
-</body></html>
+</body>
+</html>
